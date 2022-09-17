@@ -2,8 +2,9 @@ import * as THREE from 'three';
 // import easing from './easing.js';
 import metaversefile from 'metaversefile';
 const {useApp, useFrame, useActivate, createAppAsync, useCleanup} = metaversefile;
+const localVector = new THREE.Vector3();
 
-const baseUrl = import.meta.url.replace(/(\/)[^\/\\]*$/, '$1');
+// const baseUrl = import.meta.url.replace(/(\/)[^\/\\]*$/, '$1');
 
 export default e => {
   const app = useApp();
@@ -35,26 +36,26 @@ export default e => {
       avatarUrl,
       voice,
     }, index) => {
+      const position = localVector.set(-1 + index * 2, 2, 0);
+
       let o = await createAppAsync({
-        "type": "application/npc",
-        "content": {
-          "name": "Procgen Avatar",
+        type: 'application/npc',
+        content: {
+          name: 'Procgen Avatar',
           avatarUrl,
           voice,
-          "bio": "A procedurally generated avatar",
+          bio: 'A procedurally generated avatar',
           procgen: true,
-        }
+        },
+        position,
+        parent: app,
       });
       if (!live) {
         o.destroy();
         return;
       }
 
-      console.log('got npc', o);
-
-      o.position.set(-1 + index * 2, 2, 0);
       app.add(o);
-      o.updateMatrixWorld();
     }));
   })());
   
