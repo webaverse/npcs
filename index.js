@@ -1,15 +1,12 @@
 import * as THREE from 'three';
-// import easing from './easing.js';
 import metaversefile from 'metaversefile';
 const {useApp, useFrame, useActivate, createAppAsync, useCleanup} = metaversefile;
 const localVector = new THREE.Vector3();
 
-// const baseUrl = import.meta.url.replace(/(\/)[^\/\\]*$/, '$1');
 const procgenAssetsBaseUrl = `https://webaverse.github.io/procgen-assets/`;
 
 export default e => {
   const app = useApp();
-  // const physics = usePhysics();
 
   app.name = 'npcs';
 
