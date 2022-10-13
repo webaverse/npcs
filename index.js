@@ -5,6 +5,7 @@ const {useApp, useFrame, useActivate, createAppAsync, useCleanup} = metaversefil
 const localVector = new THREE.Vector3();
 
 // const baseUrl = import.meta.url.replace(/(\/)[^\/\\]*$/, '$1');
+const procgenAssetsBaseUrl = `https://webaverse.github.io/procgen-assets/`;
 
 export default e => {
   const app = useApp();
@@ -25,11 +26,11 @@ export default e => {
   e.waitUntil((async () => {
     await Promise.all([
       {
-        avatarUrl: `/procgen-assets/avatars/female-procgen.vrm`,
+        avatarUrl: `${procgenAssetsBaseUrl}avatars/female-procgen.vrm`,
         voice: `Maud Pie`,
       },
       {
-        avatarUrl: `/procgen-assets/avatars/male-procgen.vrm`,
+        avatarUrl: `${procgenAssetsBaseUrl}avatars/male-procgen.vrm`,
         voice: `Discord`,
       },
     ].map(async ({
